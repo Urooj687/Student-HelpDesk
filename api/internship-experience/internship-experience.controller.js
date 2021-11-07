@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const StudentModel = require('../student/student.model');
 
-
 router.get('/:id', list);
 router.get('/:sid/:eid', show);
 router.post('/:id', add);

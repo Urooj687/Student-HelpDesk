@@ -22,4 +22,5 @@ function listCities(req, res) {
 	const state = req.params.state;
 	if (!countries[country] || !countries[country].states[state]) return res.status(404).send("No state found");
 	res.send(countries[country].states[state].cities || []);
+
 }

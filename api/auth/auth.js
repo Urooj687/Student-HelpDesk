@@ -19,10 +19,7 @@ router.post('/login', function (req, res) {
 			if (err || !Student) {
 				return res.sendStatus(400);
 			} else {
-				// bcrypt.compare(req.body.password, Student.password, function (err, passed) {
-				// 	if (err || !passed) {
-				// 		return res.sendStatus(500);
-				// 	}
+				
 					jwt.sign({
 						"id": Student._id,
 						"role": "student"
@@ -71,4 +68,5 @@ function verify(req, res, next) {
 			return next();
 		}
 	});
+
 }

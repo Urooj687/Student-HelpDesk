@@ -2,13 +2,9 @@ const express = require('express');
 const router = express.Router();
 const AdmissionsModel = require('../admissions/admissions.model');
 
-
-
 router.post('/', add);
 router.get('/', list);
 module.exports = router;
-
-
 
 function list(req, res) {
 	const id = res.locals.user.id;

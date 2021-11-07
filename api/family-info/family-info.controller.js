@@ -74,4 +74,5 @@ function update(req, res) {
 			return res.json(Student);
 		});
 	});
+
 }
