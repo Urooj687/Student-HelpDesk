@@ -1,0 +1,22 @@
+<div class="login-container" fxLayout="row" fxLayoutAlign="center center">
+  <div class="content mat-elevation-z1" fxLayout="row">
+    <div class="form-container" fxLayout="column">
+      <span style="font-size: 24px" class="logo" fxLayout="row" fxLayoutAlign="center center">
+        <img style="width:150px;" src="./assets/logo.png" alt="">
+      </span>
+      <form class="login-form" fxLayout="column" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field fxFlex="100">
+          <input autocomplete='off' matInput placeholder="Email" type="email" required formControlName="email">
+        </mat-form-field>
+        <mat-form-field fxFlex="100">
+          <input autocomplete='off' matInput placeholder="Password" type="password" required formControlName="password">
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <a href="">Forgotten Password?</a>
+          <span class="filler"></span>
+          <button mat-raised-button class="green-button">Login <mat-icon>input</mat-icon></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

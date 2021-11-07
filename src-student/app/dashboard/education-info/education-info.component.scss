@@ -1,0 +1,42 @@
+@import "~_variables.scss";
+.edu-form-container{
+    background-color: white;
+    .title{
+        padding: 0px 20px;
+    }
+    form{
+        padding:30px 20px;
+    }
+    hr{
+        background-color: $primary;
+        border-color: $primary;   
+    }
+    mat-chip{
+        padding: 4px 8px 4px 12px;
+    }
+    .custom-icon{
+        border-radius: 50%;
+        background-color: white !important;
+        color: $primary !important;
+        opacity: 1.0 !important;
+        padding: 5px;
+    }
+}
+.bg-grey{
+    background-color: #cecece;
+    color: white;
+}
+.bg-teal{
+    background-color: #009688;
+    color: white;
+}
+
+.degrees{
+    padding: 20px;
+}
+
+.degree{
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px !important;
+}

@@ -1,0 +1,86 @@
+<div class="mat-elevation-z8 main-container" fxLayout="column">
+	<div class="example-loading-shade" fxFlex="100" *ngIf="isLoadingResults || isRateLimitReached">
+		<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+		<div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+			GitHub's API rate limit has been reached. It will be reset in one minute.
+		</div>
+	</div>
+	<div fxLayout="row" class="padding-20 bg-white" *ngIf="showForm">
+		<form [formGroup]="admissionForm" (ngSubmit)="submit(admissionForm)" fxLayout="column" fxFlex="100">
+			<div fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+				<mat-form-field fxFlex="33" fxFlex.lg="33" fxFlex.lt-md="100">
+					<input formControlName="title" autocomplete='off' type="text" placeholder="Title" aria-label="title"
+						matInput>
+				</mat-form-field>
+				<mat-form-field fxFlex="33" fxFlex.lg="33" fxFlex.lt-md="100">
+					<mat-label>Categories</mat-label>
+					<mat-select formControlName="categories" multiple>
+						<mat-option *ngFor="let category of categories" [value]="category">{{category}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<mat-form-field fxFlex="33" fxFlex.lg="33" fxFlex.lt-md="100">
+					<input formControlName="charges" autocomplete='off' type="number" placeholder="Charges"
+						aria-label="charges" matInput>
+				</mat-form-field>
+			</div>
+			<div fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+				<mat-form-field fxFlex.lg="50" fxFlex.lt-md="100">
+					<input formControlName="start" matInput autocomplete='off' placeholder="Start Date"
+						[matDatepicker]="start">
+					<mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+					<mat-datepicker #start></mat-datepicker>
+				</mat-form-field>
+				<mat-form-field fxFlex.lg="50" fxFlex.lt-md="100">
+					<input formControlName="end" matInput autocomplete='off' placeholder="End Date"
+						[matDatepicker]="end">
+					<mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+					<mat-datepicker #end></mat-datepicker>
+				</mat-form-field>
+			</div>
+			<div>
+				<button mat-flat-button color="primary" type="submit">Submit</button>
+			</div>
+		</form>
+	</div>
+	<div fxLayout="row" fxLayoutAlign="center center">
+		<button (click)="showForm=!showForm" mat-icon-button color="primary">
+			<mat-icon *ngIf="!showForm" aria-label="Example icon-button with a heart icon">add_circle_outline</mat-icon>
+			<mat-icon *ngIf="showForm" aria-label="Example icon-button with a heart icon">remove_circle_outline</mat-icon>
+		</button>
+	</div>
+	<div class="table">
+		<table mat-table [dataSource]="data" fxFlex="100" matSort matSortActive="start" matSortDisableClear
+			matSortDirection="desc">
+			<ng-container matColumnDef="title">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+				<td mat-cell *matCellDef="let row">{{row.title}}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="start">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header>Start</th>
+				<td mat-cell *matCellDef="let row">{{row.start|date:'mediumDate'}}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="end">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Ending</th>
+				<td mat-cell *matCellDef="let row">{{row.end|date:'mediumDate'}}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="actions">
+				<th mat-header-cell *matHeaderCellDef disableClear>
+					
+				</th>
+				<td mat-cell *matCellDef="let row">
+					<button mat-icon-button color="accent">
+						<mat-icon>edit</mat-icon>
+					</button>
+				</td>
+			</ng-container>
+
+			<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+		</table>
+	</div>
+
+	<mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>
+</div>

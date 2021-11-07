@@ -1,0 +1,24 @@
+<mat-sidenav-container fxLayout="column" class="layout-container dashboard">
+	<mat-sidenav class="mat-elevation-z2" #sidenav [opened]="opened" [mode]="mode">
+		<div class="logo">
+			<img src="./assets/logo.png" alt="">
+		</div>
+		<mat-nav-list>
+			<a mat-list-item routerLink="{{nav.url}}" *ngFor="let nav of navs">
+				<mat-icon mat-list-icon>{{nav.icon}}</mat-icon>
+				<p *ngIf="!minimized" mat-line>{{nav.name}}</p>
+				<mat-icon *ngIf="!minimized" color="warn">error</mat-icon>				
+			</a>
+		</mat-nav-list>
+	</mat-sidenav>
+	<mat-sidenav-content class="layout-content">
+		<mat-toolbar class="mat-elevation-z6" color="primary">
+			<span class="flex-spacer"></span>
+			<mat-icon (click)="logout()">exit_to_app</mat-icon>
+		</mat-toolbar>
+		<router-outlet></router-outlet>
+	</mat-sidenav-content>
+</mat-sidenav-container>
+
+<!--These are for avoiding autofills-->
+<input type="text" autocomplete="city" type="hidden">

@@ -1,0 +1,66 @@
+<ng-template #customCellTemplate let-day="day" let-locale="locale">
+  <div class="cal-cell-top reduce-height">
+    <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
+    <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+  </div>
+  <small *ngIf="day.events.length >= 1" class="event-container" [style.backgroundColor]="day.events[0].color.primary" [style.borderLeftColor]="day.events[0].color.secondary">{{day.events[0].title}}</small>
+  <small *ngIf="day.events.length == 2" class="event-container" [style.backgroundColor]="day.events[1].color.primary" [style.borderLeftColor]="day.events[1].color.secondary">{{day.events[1].title}}</small>
+  <small *ngIf="day.events.length > 2" class="more-events" (click)="openDialog(day.events)">
+    +{{(day.events.length-1)}} more
+  </small>
+  <!-- ngStyle="getEventBorders(day.events[0].color.primary, day.events[0].color.secondry)"
+ngStyle="getEventBorders(day.events[1].color.primary, day.events[1].color.secondry)" -->
+  <span class="gap"></span>
+</ng-template>
+<div class=" tabs-container">
+  <mat-tab-group>
+    <mat-tab label="High School">
+      <div class="calender-container">
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="calender-header mat-elevation-z2">
+          <!-- <mat-icon class="pointer" (click) = "previousMonth()">arrow_backword</mat-icon> -->
+          <mat-icon class="pointer" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate)">arrow_backword</mat-icon>
+          <span style="font-size:18px;">{{getDate()}}</span>
+          <mat-icon class="pointer" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate)">arrow_forward</mat-icon>
+        </div>
+        <mat-card>
+          <div [ngSwitch]="view">
+            <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="highSchoolEvents" [cellTemplate]="customCellTemplate">
+            </mwl-calendar-month-view>
+          </div>
+        </mat-card>
+      </div>
+    </mat-tab>
+    <mat-tab label="Undergrads">
+      <div class="calender-container">
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="calender-header mat-elevation-z2">
+          <!-- <mat-icon class="pointer" (click) = "previousMonth()">arrow_backword</mat-icon> -->
+          <mat-icon class="pointer" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate)">arrow_backword</mat-icon>
+          <span style="font-size:18px;">{{getDate()}}</span>
+          <mat-icon class="pointer" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate)">arrow_forward</mat-icon>
+        </div>
+        <mat-card>
+          <div [ngSwitch]="view">
+            <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="undergradsEvents" [cellTemplate]="customCellTemplate">
+            </mwl-calendar-month-view>
+          </div>
+        </mat-card>
+      </div>
+    </mat-tab>
+    <mat-tab label="Masters">
+      <div class="calender-container">
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="calender-header mat-elevation-z2">
+          <!-- <mat-icon class="pointer" (click) = "previousMonth()">arrow_backword</mat-icon> -->
+          <mat-icon class="pointer" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate)">arrow_backword</mat-icon>
+          <span style="font-size:18px;">{{getDate()}}</span>
+          <mat-icon class="pointer" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate)">arrow_forward</mat-icon>
+        </div>
+        <mat-card>
+          <div [ngSwitch]="view">
+            <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="mastersEvents" [cellTemplate]="customCellTemplate">
+            </mwl-calendar-month-view>
+          </div>
+        </mat-card>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

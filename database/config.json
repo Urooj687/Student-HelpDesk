@@ -1,0 +1,5 @@
+{
+    "url": "mongodb://ds119343.mlab.com:19343/student-portal",
+    "username": "root",
+    "password": "qwerty123"
+}

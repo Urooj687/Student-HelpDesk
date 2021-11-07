@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.padding-20{
+	padding: 20px;
+}
+
+.bg-white{
+	background-color: white;
+}
+
+app-data-visualizer .mat-form-field-appearance-outline .mat-form-field-infix{
+    padding-top: 12px;
+    padding-bottom: 20px;
+}
+
+app-data-visualizer .mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+    padding-top: 10px;
+}
+app-data-visualizer .mat-form-field-appearance-outline button svg{
+	margin-bottom: -2.5px !important;
+}

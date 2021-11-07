@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import "~@angular/material/prebuilt-themes/deeppurple-amber.css"; */
+@import "~angular-calendar/css/angular-calendar.css";
+body{
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0;
+}
+
+.cal-month-view .cal-day-cell.cal-in-month.cal-has-events {
+    cursor: default;
+}
+
+*{
+    font-family: 'Raleway', sans-serif;
+}
+
+.mat-drawer-side {
+    border-right: none !important;
+}

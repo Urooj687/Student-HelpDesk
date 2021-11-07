@@ -1,0 +1,7 @@
+<h1 mat-dialog-title>Applications Opened</h1>
+<div mat-dialog-content>
+  <div class="event-container" *ngFor = "let event of data" [style.backgroundColor]="event.color.primary" [style.borderLeftColor]="event.color.secondary">{{event.title}}</div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Close</button>
+</div>

@@ -1,0 +1,58 @@
+<div class="main-container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px"
+ fxLayoutAlign="center start" fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center">
+	<div fxFlexFill ngClass.sm="sm-width" ngClass.xs="xs-width" class="form-container mat-elevation-z2">
+		<h3 class="title">Work Experience</h3>
+		<hr>
+		<form [formGroup]="experienceForm" (ngSubmit)="submit(experienceForm)">
+			<div>
+				<button style="float:right;margin-top:-60px;" class="custom-btn text-white btn-green" type="submit">Save
+					<mat-icon class="text-primary">save</mat-icon>
+				</button>
+			</div>
+			<div fxLayout="row">
+				<mat-form-field fxFlex.gt-md="33" fxFlex.lt-md="100">
+					<input formControlName="country" autocomplete='off' type="text" placeholder="Country" aria-label="country"
+					 matInput [matAutocomplete]="country">
+					<mat-autocomplete #country="matAutocomplete">
+						<mat-option *ngFor="let country of filteredCountries | async" [value]="country">{{country}}</mat-option>
+					</mat-autocomplete>
+				</mat-form-field>
+			</div>
+			<div fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+				<mat-form-field fxFlex.lg="33" fxFlex.lt-md="100">
+					<input formControlName="company" type="text" matInput placeholder="Company/Institution Name">
+				</mat-form-field>
+				<mat-form-field fxFlex.gt-md="33" fxFlex.lt-md="100">
+					<input formControlName="designation" autocomplete='off' type="text" placeholder="Designation" aria-label="designation"
+					 matInput>
+				</mat-form-field>
+				<mat-form-field fxFlex.lg="33" fxFlex.lt-md="100">
+					<input formControlName="position" type="text" matInput placeholder="Position">
+				</mat-form-field>
+			</div>
+			<div fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+				<mat-form-field fxFlex.lg="33" fxFlex.lt-md="100">
+					<mat-select formControlName="working" name="employmentStatus" placeholder="Employement Status">
+						<mat-option [value]="true">I'm currently employed</mat-option>
+						<mat-option [value]="false">left</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<mat-form-field fxFlex.lg="33">
+					<input matInput formControlName="start" autocomplete='off' placeholder="Employement Start Date" [matDatepicker]="startDate">
+					<mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+					<mat-datepicker #startDate></mat-datepicker>
+				</mat-form-field>
+				<mat-form-field fxFlex.lg="33" *ngIf="experienceForm.controls.working.value == false">
+					<input formControlName="end" matInput autocomplete='off' placeholder="Employement End Date" [matDatepicker]="endDate">
+					<mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+					<mat-datepicker #endDate></mat-datepicker>
+				</mat-form-field>
+			</div>
+			<div fxFlex="100">
+				<mat-form-field fxFlexFill>
+					<textarea formControlName="details" matInput placeholder="Please give details about your responsibilities at this job."></textarea>
+				</mat-form-field>
+			</div>
+		</form>
+	</div>
+</div>

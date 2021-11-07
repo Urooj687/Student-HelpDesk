@@ -1,0 +1,84 @@
+@import "~_variables.scss";
+.custom-btn{
+	border: none;
+	border-radius: 20px;
+	padding: 3px 5px 3px 15px;
+	display: flex;
+	align-items: center;
+	font-size: 15px;
+	color: white;
+	cursor: pointer;
+}
+
+.custom-btn {
+	mat-icon{
+		border-radius: 50%;
+		background-color: white !important;
+		color: $primary !important;
+		margin-left: 15px;
+		opacity: 1.0 !important;
+		padding: 4px;
+	}
+}
+
+.bg-primary{
+	background-color: $primary;
+}
+.text-primary{
+	color: $primary;
+}
+.text-white{
+	color: white;
+}
+
+.main-container{
+    margin: 30px 20px;
+}
+
+.form-container{
+    background-color: white;
+    .title{
+        padding: 0px 20px;
+    }
+    form{
+        padding:30px 20px;
+	}
+	hr{
+		background-color: $primary;
+		border-color: $primary;   
+	}
+	.dashboard{
+		mat-chip{
+			padding: 4px 8px 4px 12px;
+		}
+		mat-icon{
+			border-radius: 50%;
+			background-color: white !important;
+			color: $primary !important;
+			margin-left: 15px;
+			opacity: 1.0 !important;
+			padding: 5px;
+		}
+	}
+}
+
+.sm-width{
+    width: 70%;
+}
+
+.xs-width{
+    width: 100%;
+}
+
+.btn-blue{
+	background-color: #2196F3;
+	.mat-icon{
+		color: #2196F3 !important;
+	}
+}
+.btn-green{
+	background-color: #4CAF50;
+	.mat-icon{
+		color: #4CAF50 !important;
+	}
+}

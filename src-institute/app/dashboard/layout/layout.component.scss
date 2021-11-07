@@ -1,0 +1,31 @@
+@import '~_variables.scss';
+
+.layout-container{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.logo{
+    padding: 10px;
+    background-color: $primary;
+    text-align: center;
+}
+
+.logo img{
+    width: 100px;
+    display: inline-block;
+}
+
+.flex-spacer {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+.mat-sidenav-content{
+    background-color: #f0f0f0
+}

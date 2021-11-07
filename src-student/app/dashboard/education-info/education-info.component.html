@@ -1,0 +1,40 @@
+<div class="main-container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px"
+ fxLayoutAlign="center start" fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center">
+	<div fxFlexFill ngClass.sm="sm-width" ngClass.xs="xs-width" class="edu-form-container mat-elevation-z2">
+		<h3 class="title">Education Information</h3>
+		<hr>
+
+		<div class="degrees" fxLayout.gt-md="row wrap" fxLayout.lt-md="column" fxLayoutGap="10px">
+			<!-- <div fxFlex.lt-md="100" fxFlex.gt-md="25" fxLayout="column" fxLayoutAlign="center center">
+				<mat-card routerLink="add-education" class="bg-grey degree" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+					<mat-icon>local_library</mat-icon>
+					<span>Matric/O Levels</span>
+				</mat-card>
+			</div> -->
+			<div *ngFor="let education of educations" fxLayout="column" fxLayoutAlign="center center">
+				<mat-card style="width:150px; margin: 10px;" routerLink="add-education/{{education._id}}" class="bg-teal degree" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+					<mat-icon class="custom-icon">import_contacts</mat-icon>
+					<span>{{education.institution}}</span>
+				</mat-card>
+			</div>
+			<div fxLayout="column" fxLayoutAlign="center center">
+				<mat-card routerLink="add-education" class="bg-grey" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center" style="padding: 24px; margin: 10px;">
+					<mat-icon style="font-size: 48px;width: 48px; height: 48px;">control_point</mat-icon>
+				</mat-card>
+			</div>
+			<!-- <div fxFlex.lt-md="100" fxFlex.gt-md="25" fxLayout="column" fxLayoutAlign="center center">
+				<mat-card routerLink="add-education" class="bg-grey degree" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+					<mat-icon>school</mat-icon>
+					<span>Bachelor's</span>
+				</mat-card>
+			</div>
+			<div fxFlex.lt-md="100" fxFlex.gt-md="25" fxLayout="column" fxLayoutAlign="center center">
+				<mat-card routerLink="add-education" class="bg-teal degree" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+					<mat-icon>location_city</mat-icon>
+					<span>Postgraduate</span>
+				</mat-card>
+			</div> -->
+		</div>
+
+	</div>
+</div>

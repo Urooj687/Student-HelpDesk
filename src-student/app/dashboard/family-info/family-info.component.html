@@ -1,0 +1,96 @@
+<div class="main-container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px" fxLayoutAlign="center start"
+ fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center">
+	<div fxFlexFill ngClass.sm="sm-width" ngClass.xs="xs-width" class="form-container mat-elevation-z2">
+		<h3 class="title">Family Information</h3>
+		<hr>
+		<form [formGroup]="familyInfoForm" (ngSubmit)="update(familyInfoForm)">
+			<div>
+				<button *ngIf="formEnabled" style="float:right;margin-top:-60px;" class="custom-btn text-white btn-green" type="submit">Save
+					<mat-icon class="text-primary">save</mat-icon>
+				</button>
+				<button (click)="enableForm()" *ngIf="!formEnabled" style="float:right;margin-top:-60px;" class="custom-btn bg-primary text-white btn-blue" type="submit">Edit
+					<mat-icon class="text-primary">edit</mat-icon>
+				</button>
+			</div>
+			<div formGroupName="father">
+				<div fxLayout.md="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign.lg="start center">
+					<mat-form-field fxFlex.lg="33">
+						<input autocomplete='off' matInput placeholder="Father's Name" formControlName="name">
+					</mat-form-field>
+					<mat-form-field fxFlex.lg="33">
+						<mat-select placeholder="Is your father alive?" formControlName="alive">
+							<mat-option [value]="true">Yes</mat-option>
+							<mat-option [value]="false">No</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<section *ngIf="familyInfoForm['controls'].father['controls'].alive.value" fxFlex.lg="33">
+						<mat-checkbox formControlName="working" name="fatherWorking">My Father is working</mat-checkbox>
+					</section>
+				</div>
+				<div *ngIf="familyInfoForm['controls'].father['controls'].working.value" fxLayout.md="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10px">
+					<mat-form-field fxFlex.lg="33">
+						<input autocomplete='off' type="text" formControlName="company" placeholder="Institute/Company Your Father works at"
+						 aria-label="Number" matInput>
+					</mat-form-field>
+					<mat-form-field fxFlex.lg="33">
+						<input autocomplete='off' type="text" placeholder="Your Father's occupation" aria-label="Number" matInput
+						 [matAutocomplete]="auto" formControlName="occupation">
+						<mat-autocomplete #auto="matAutocomplete">
+							<mat-option [value]="'Manager'">Manager</mat-option>
+						</mat-autocomplete>
+					</mat-form-field>
+					<mat-form-field fxFlex.lg="33">
+						<input autocomplete='off' type="text" placeholder="Title/Position" aria-label="Number" matInput formControlName="position">
+					</mat-form-field>
+				</div>
+			</div>
+			<div formGroupName="mother">
+				<div fxLayout.md="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign.lg="start center">
+					<mat-form-field fxFlex.lg="33">
+						<input autocomplete='off' matInput placeholder="Mother's Name" formControlName="name">
+					</mat-form-field>
+					<mat-form-field fxFlex.lg="33">
+						<mat-select placeholder="Is your mother alive?" formControlName="alive">
+							<mat-option [value]="true">Yes</mat-option>
+							<mat-option [value]="false">No</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<section *ngIf="familyInfoForm['controls'].mother['controls'].alive.value" fxFlex.lg="33">
+						<mat-checkbox formControlName="working" name="motherWorking">My Mother is working</mat-checkbox>
+					</section>
+				</div>
+				<div *ngIf="familyInfoForm['controls'].mother['controls'].working.value" fxLayout.md="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10px">
+					<mat-form-field fxFlex.lg="33">
+						<input autocomplete='off' formControlName="company" type="text" placeholder="Institute/Company Your Mother works at" aria-label="Number"
+						 matInput>
+					</mat-form-field>
+					<mat-form-field fxFlex.lg="33">
+						<input autocomplete='off' type="text" placeholder="Your Mother's occupation" aria-label="Number" matInput
+						 [matAutocomplete]="auto"  formControlName="occupation">
+						<mat-autocomplete #auto="matAutocomplete">
+							<mat-option [value]="'Manager'">Manager</mat-option>
+						</mat-autocomplete>
+					</mat-form-field>
+					<mat-form-field fxFlex.lg="33">
+						<input autocomplete='off' type="text" placeholder="Title/Position" aria-label="Number" matInput formControlName="position">
+					</mat-form-field>
+				</div>
+			</div>
+			<div fxLayout.md="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10px">
+				<mat-form-field fxFlex.lg="33">
+					<input autocomplete='off' type="number" placeholder="No of siblings" aria-label="Number" matInput  formControlName="totalSiblings">
+				</mat-form-field>
+				<mat-form-field fxFlex.lg="33">
+					<mat-select placeholder="Marital Status" formControlName="maritalStatus">
+						<mat-option [value]="'single'">Single</mat-option>
+						<mat-option [value]="'married'">Married</mat-option>
+						<mat-option [value]="'divorced'">Divorced</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<mat-form-field fxFlex.lg="33">
+					<input autocomplete='off' type="number" placeholder="Monthly Income" aria-label="Number" matInput formControlName="monthlyIncome">
+				</mat-form-field>
+			</div>
+		</form>
+	</div>
+</div>

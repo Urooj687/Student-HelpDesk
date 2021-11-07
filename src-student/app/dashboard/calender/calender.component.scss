@@ -1,0 +1,52 @@
+.tabs-container{
+    margin: 30px 30px 30px 30px;
+    background-color: white;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.calender-header{
+    border-radius: 2px 2px 0px 0px;
+    padding: 10px;
+    background-color: #8BC34A;
+    color: white;
+}
+
+.calender-container{
+    margin: 30px 30px 30px 30px;
+}
+.pointer{
+    cursor: pointer;
+}
+.event-container{
+    background-color: rgba(27, 185, 52, 0.101);
+    margin-top: 5px;
+    padding: 8px 8px 8px 12px;
+    border-left: 2px solid;
+    border-top: 1px solid rgb(225, 225, 225);
+    border-right: 1px solid rgb(225, 225, 225);
+    border-bottom: 1px solid rgb(225, 225, 225);
+    cursor: pointer;
+}
+
+.event-container:hover{
+    border-color:#269af3!important;
+}
+
+
+.reduce-height{
+    min-height:0px;
+}
+
+.gap{
+    margin-bottom: 10px;
+}
+
+.more-events{
+    margin: 5px;
+    cursor: pointer;
+}
+
+.more-events:hover{
+    text-decoration: underline;
+    color: blue;
+    width: 100%;
+}

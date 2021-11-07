@@ -1,0 +1,67 @@
+<div class="login-container" fxLayout="row" fxLayoutAlign="center center">
+  <div class="content mat-elevation-z1" fxLayout="row">
+    <div class="form-container" fxLayout="column">
+      <span style="font-size: 24px" class="logo" fxLayout="row" fxLayoutAlign="center center">
+        <img style="width:150px;" src="./assets/logo.png" alt="">
+      </span>
+      <form class="login-form" fxLayout="column" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field fxFlex="100">
+          <input autocomplete='off' matInput placeholder="Email" type="email" required formControlName="email">
+        </mat-form-field>
+        <mat-form-field fxFlex="100">
+          <input autocomplete='off' matInput placeholder="Password" type="password" required formControlName="password">
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <a href="">Forgotten Password?</a>
+          <span class="filler"></span>
+          <button mat-raised-button class="green-button">Login <mat-icon>input</mat-icon></button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end center">
+
+          <a class="register-link" routerLink="/auth/register" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+            <mat-icon>person_add</mat-icon>
+            <p>Register</p>
+          </a>
+        </div>
+      </form>
+    </div>
+    <div class="info-container" fxHide.lt-md>
+      <ul>
+        <li fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-icon>person_add</mat-icon>
+          <p>You need to register before initiating an application.</p>
+        </li>
+        <li fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-icon>money_off</mat-icon>
+          <p>Signing up is free of charge and will take approximately 2 minutes. Signing up only once will be
+            sufficient.</p>
+        </li>
+        <li fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-icon>beenhere</mat-icon>
+          <p>The accuracy of the information you provide in your application is crucial in order to be considered for
+            the scholarship award.</p>
+        </li>
+        <li fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-icon>access_time</mat-icon>
+          <p>The application process takes about 30-60 minutes.</p>
+        </li>
+        <li fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-icon>description</mat-icon>
+          <p>
+            For more information please refer to the
+            <b class="textcolorRed">Scholarship Application Manual and visit our web site </b>.
+          </p>
+        </li>
+        <li fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-icon>videocam</mat-icon>
+          <p><a href="//www.youtube.com/watch?v=p9jddX9nIhs" target="_blank"><b class="textcolorRed">https://www.youtube.com/watch?v=p9jddX9nIhs</b></a></p>
+        </li>
+        <li fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-icon>public</mat-icon>
+          <p>Türkiye Scholarships Information System (TBBS) works on Firefox, Google Chrome, Safari 5 and later
+            versions, Microsoft Edge, Internet Explorer 8 and later versions.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

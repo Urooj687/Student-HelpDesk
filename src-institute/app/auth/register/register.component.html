@@ -1,0 +1,77 @@
+<div class="register-container" fxLayout="column" fxLayoutAlign="center center">
+  <div class="form-container mat-elevation-z1">
+    <form action="" fxLayout="column" fxFlex="100" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <span style="font-size: 24px" class="logo" fxLayout="row" fxLayoutAlign="center center">
+        <img style="width:150px;" src="./assets/logo.png" alt="">
+      </span>
+      <!-- <div fxLayout="row" fxLayoutGap.gt-sm="20px" fxLayout.lt-md="column">
+        <mat-form-field fxFlex="33">
+          <input autocomplete='off' matInput placeholder="First Name" type="text">
+        </mat-form-field>
+        <mat-form-field fxFlex="33">
+          <input autocomplete='off' matInput placeholder="Middle Name" type="text">
+        </mat-form-field>
+        <mat-form-field fxFlex="33">
+          <input autocomplete='off' matInput placeholder="Last Name" type="text">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutGap.gt-sm="20px" fxLayout.lt-md="column">
+        <mat-form-field fxFlex.lg="33">
+          <mat-select placeholder="Gender">
+            <mat-option [value]="'male'">Male</mat-option>
+            <mat-option [value]="'female'">Female</mat-option>
+            <mat-option [value]="'other'">Other</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex.lg="33">
+          <input autocomplete='off' type="text" placeholder="Nationality/Citizenship" aria-label="Number" matInput
+            [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option [value]="'Pakistan'">Pakistan</mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field fxFlex.lg="33">
+          <input matInput autocomplete='off' placeholder="Date of Birth" [matDatepicker]="dob">
+          <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+          <mat-datepicker #dob></mat-datepicker>
+        </mat-form-field>
+      </div> -->
+      <div fxLayout="row" fxLayoutGap.gt-sm="20px" fxLayout.lt-md="column">
+        <mat-form-field fxFlex="50">
+          <input autocomplete='off' matInput placeholder="Email" type="email" formControlName="email">
+          <mat-error *ngIf="registrationForm.controls.email.invalid && (registrationForm.controls.email.dirty || registrationForm.controls.email.touched)">
+            Please enter a valid email address
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="50">
+          <input autocomplete='off' matInput placeholder="Email again" type="text" formControlName="reEmail">
+          <mat-error *ngIf="registrationForm.controls.reEmail.errors?.emailMatchError">
+            Email does not match
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutGap.gt-sm="20px" fxLayout.lt-md="column">
+        <mat-form-field fxFlex="50">
+          <input autocomplete='off' matInput placeholder="Password" type="password" formControlName="password">
+          <mat-error *ngIf="registrationForm.controls.password.invalid && (registrationForm.controls.password.dirty || registrationForm.controls.password.touched)">
+            Password must contain an Uppercase, a Lowercase and a number
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="50">
+          <input autocomplete='off' matInput placeholder="Repeat password" type="password" formControlName="rePassword">
+          <mat-error *ngIf="registrationForm.controls.rePassword.errors?.passwordMatchError">
+            Password does not match
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutGap.gt-sm="20px" fxLayout.lt-md="column">
+        <mat-checkbox formControlName="accept">I Accept</mat-checkbox>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <a routerLink="/auth/login">Already Have Account? Sign In</a>
+        <span class="filler"></span>
+        <button [disabled]="registrationForm.invalid" mat-raised-button class="green-button">Register <mat-icon>how_to_reg</mat-icon></button>
+      </div>
+    </form>
+  </div>
+</div>

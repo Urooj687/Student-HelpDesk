@@ -1,0 +1,133 @@
+<div class="main-container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px" fxLayoutAlign="center start"
+ fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center">
+	<div fxFlexFill ngClass.sm="sm-width" ngClass.xs="xs-width" class="form-container mat-elevation-z2">
+		<h3 class="title">Work Experience</h3>
+		<hr>
+		<form>
+			<div>
+				<button routerLink="add-work" style="float:right;margin-top:-60px;" class="custom-btn bg-primary text-white" type="submit">Add
+					<mat-icon class="text-primary">add</mat-icon>
+				</button>
+			</div>
+			<div style="overflow: auto;">
+				<mat-table [dataSource]="experienceData">
+					<!-- Position Column -->
+					<ng-container matColumnDef="company">
+						<mat-header-cell *matHeaderCellDef> Company </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.company}} </mat-cell>
+					</ng-container>
+
+					<!-- Name Column -->
+					<ng-container matColumnDef="date">
+						<mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.start | date}} </mat-cell>
+					</ng-container>
+
+					<!-- Weight Column -->
+					<ng-container matColumnDef="title">
+						<mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+					</ng-container>
+
+					<!-- Symbol Column -->
+					<ng-container matColumnDef="status">
+						<mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.working}} </mat-cell>
+					</ng-container>
+
+					<!--Actions-->
+					<ng-container matColumnDef="actions">
+						<mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+						<mat-cell  style="justify-content: flex-end" *matCellDef="let element">
+							<button mat-icon-button [matMenuTriggerFor]="actionsMenu">
+								<mat-icon>more_vert</mat-icon>
+							</button>
+							<mat-menu #actionsMenu="matMenu">
+								<button mat-menu-item [routerLink]="['add-work', element._id]">
+									<mat-icon>edit</mat-icon>
+									<span>Edit</span>
+								</button>
+								<button mat-menu-item>
+									<mat-icon>delete</mat-icon>
+									<span style="padding-right: 15px;">Delete</span>
+								</button>
+							</mat-menu>
+						</mat-cell>
+					</ng-container>
+
+					<mat-header-row *matHeaderRowDef="experienceColumns"></mat-header-row>
+					<mat-row *matRowDef="let row; columns: experienceColumns;"></mat-row>
+				</mat-table>
+			</div>
+			<div style="margin-top: 30px;"></div>
+			<div fxLayout.md="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10px">
+				<section fxFlexFill>
+					<mat-checkbox [(ngModel)]="hasInternship" name="hasInternship">I have completed / I am currently doing my internship</mat-checkbox>
+				</section>
+			</div>
+		</form>
+	</div>
+	<div *ngIf="hasInternship" fxFlexFill ngClass.sm="sm-width" ngClass.xs="xs-width" class="form-container mat-elevation-z2">
+		<h3 class="title">Internship Experience</h3>
+		<hr>
+		<form>
+			<div>
+				<button routerLink="add-internship" style="float:right;margin-top:-60px;" class="custom-btn bg-primary text-white" type="submit">Add
+					<mat-icon class="text-primary">add</mat-icon>
+				</button>
+			</div>
+			<div style="overflow: auto;">
+				<mat-table [dataSource]="internshipData">
+					<!-- Position Column -->
+					<ng-container matColumnDef="company">
+						<mat-header-cell *matHeaderCellDef> Company </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.company}} </mat-cell>
+					</ng-container>
+
+					<!-- Name Column -->
+					<ng-container matColumnDef="subject">
+						<mat-header-cell *matHeaderCellDef> Subject </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.subject}} </mat-cell>
+					</ng-container>
+
+					<!-- Weight Column -->
+					<ng-container matColumnDef="duration">
+						<mat-header-cell *matHeaderCellDef> Duration </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.duration}} </mat-cell>
+					</ng-container>
+
+					<!--Actions-->
+					<ng-container matColumnDef="actions">
+						<mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+						<mat-cell style="justify-content: flex-end" *matCellDef="let element">
+							<button mat-icon-button [matMenuTriggerFor]="actionsMenu">
+								<mat-icon>more_vert</mat-icon>
+							</button>
+							<mat-menu #actionsMenu="matMenu">
+								<button mat-menu-item [routerLink]="['add-internship', element._id]">
+									<mat-icon>edit</mat-icon>
+									<span>Edit</span>
+								</button>
+								<button mat-menu-item>
+									<mat-icon>delete</mat-icon>
+									<span style="padding-right: 15px;">Delete</span>
+								</button>
+							</mat-menu>
+						</mat-cell>
+					</ng-container>
+
+					<mat-header-row *matHeaderRowDef="internshipColumns"></mat-header-row>
+					<mat-row *matRowDef="let row; columns: internshipColumns;"></mat-row>
+				</mat-table>
+			</div>
+		</form>
+	</div>
+	<div fxFlexFill ngClass.sm="sm-width" ngClass.xs="xs-width" class="form-container mat-elevation-z2">
+		<h3 class="title">CV</h3>
+		<hr>
+		<form>
+			<button type="button" mat-raised-button color="primary" (click)="cvInput.click()">Select Document</button>
+			<input hidden type="file" #cvInput />
+		</form>
+	</div>
+</div>

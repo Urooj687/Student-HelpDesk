@@ -1,0 +1,21 @@
+@import '~_variables.scss';
+.register-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.form-container{
+    width: 768px;
+    max-width: 100%;
+    background-color: white;
+    padding: 25px 25px 25px 25px;
+    border-radius: 5px;
+}
+.green-button{
+  background-color: #4CAF50;
+  color: white;
+}
+.filler {
+  flex-grow: 1;
+}

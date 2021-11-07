@@ -1,0 +1,23 @@
+@import "~_variables.scss";
+
+
+.picture-container{
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background: linear-gradient(to bottom, #222 0px,#222 30px,white 30px,white 100%);
+    .image-gradient{
+        background: linear-gradient(to bottom, #222 0%,#222 50%,white 50%,white 100%); /* W3C */
+    }
+    img{
+        border-radius: 50%;
+        max-width: 200px;
+    }
+    .name{
+        margin-top: 20px;
+        font-weight: 600;
+    }
+    .email{
+        margin-top: 5px;
+    }
+}

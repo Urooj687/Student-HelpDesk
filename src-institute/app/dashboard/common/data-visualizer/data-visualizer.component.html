@@ -1,0 +1,101 @@
+<mat-sidenav-container>
+	<mat-sidenav #formNav opened="false" mode="over" position="end">
+		<div class="closing">
+			<button mat-icon-button color="accent">
+				<mat-icon (click)="formNav.close()" aria-label="closesidenav">close</mat-icon>
+			</button>
+		</div>
+		<div class="form-container">
+			<form [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="column">
+				<ng-container *ngFor="let input of inputs; let i=index">
+					<ng-container [ngSwitch]="input.controlType">
+						<ng-container *ngSwitchCase="'textbox'">
+							<mat-form-field appearance="outline">
+								<mat-label>{{input.label}}</mat-label>
+								<input [required]="input.required" [formControlName]="input.key" matInput>
+							</mat-form-field>
+						</ng-container>
+						<ng-container *ngSwitchCase="'number'">
+							<mat-form-field appearance="outline">
+								<mat-label>{{input.label}}</mat-label>
+								<input [required]="input.required" [formControlName]="input.key" type="number" matInput>
+							</mat-form-field>
+						</ng-container>
+						<ng-container *ngSwitchCase="'dropdown'">
+							<mat-form-field appearance="outline">
+								<mat-label>{{input.label}}</mat-label>
+								<mat-select [required]="input.required" [formControlName]="input.key" #fontSize value="16px">
+									<mat-option value="10px">10px</mat-option>
+									<mat-option value="12px">12px</mat-option>
+									<mat-option value="14px">14px</mat-option>
+									<mat-option value="16px">16px</mat-option>
+									<mat-option value="18px">18px</mat-option>
+									<mat-option value="20px">20px</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</ng-container>
+						<ng-container *ngSwitchCase="'date'">
+							<mat-form-field appearance="outline">
+								<mat-label>{{input.label}}</mat-label>
+								<input matInput [matDatepicker]="picker" [required]="input.required" [formControlName]="input.key"
+									placeholder="Choose a date">
+								<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+								<mat-datepicker #picker></mat-datepicker>
+							</mat-form-field>
+						</ng-container>
+					</ng-container>
+				</ng-container>
+				<div *ngIf="inputs.length > 0">
+					<button [disabled]="!form.valid" mat-flat-button color="primary" type="submit">Save</button>
+				</div>
+			</form>
+		</div>
+	</mat-sidenav>
+	<mat-sidenav-content class="mat-elevation-z8 main-container" fxLayout="column">
+		<div class="example-loading-shade" fxFlex="100" *ngIf="isLoadingResults || isRateLimitReached">
+			<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+			<div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+				GitHub's API rate limit has been reached. It will be reset in one minute.
+			</div>
+		</div>
+		<div class="table">
+			<table mat-table [dataSource]="data" fxFlex="100" matSort matSortActive="start" matSortDisableClear
+				matSortDirection="desc">
+				<ng-container matColumnDef="title">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+					<td mat-cell *matCellDef="let row">{{row.title}}</td>
+				</ng-container>
+
+				<ng-container matColumnDef="start">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>Start</th>
+					<td mat-cell *matCellDef="let row">{{row.start}}</td>
+				</ng-container>
+
+				<ng-container matColumnDef="end">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Ending</th>
+					<td mat-cell *matCellDef="let row">{{row.end}}</td>
+				</ng-container>
+				<ng-container matColumnDef="actions">
+					<th mat-header-cell *matHeaderCellDef disableClear>
+						<button (click)="formNav.toggle()" mat-flat-button color="primary">
+							<mat-icon [inline]="true" style="font-size: 17px;">add</mat-icon>
+							<span>Add</span>
+						</button>
+					</th>
+					<td mat-cell *matCellDef="let row">
+						<button mat-icon-button color="accent">
+							<mat-icon>edit</mat-icon>
+						</button>
+						<button mat-icon-button color="accent">
+							<mat-icon>delete</mat-icon>
+						</button>
+					</td>
+				</ng-container>
+				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+			</table>
+		</div>
+
+		<mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>
+	</mat-sidenav-content>
+</mat-sidenav-container>

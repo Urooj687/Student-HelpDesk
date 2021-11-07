@@ -1,0 +1,60 @@
+<div class="main-container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px" fxLayoutAlign="center start"
+ fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center">
+	<div fxFlexFill ngClass.sm="sm-width" ngClass.xs="xs-width" class="form-container mat-elevation-z2">
+		<h3 class="title">Pending Applications</h3>
+		<hr>
+		<form>
+			<div style="overflow: auto;">
+				<mat-table [dataSource]="experienceData">
+					<!-- Position Column -->
+					<ng-container matColumnDef="universityName">
+						<mat-header-cell *matHeaderCellDef> University Name </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.company}} </mat-cell>
+					</ng-container>
+
+					<!-- Name Column -->
+					<ng-container matColumnDef="educationLevel">
+						<mat-header-cell *matHeaderCellDef> Education Level </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+					</ng-container>
+
+					<!-- Weight Column -->
+					<ng-container matColumnDef="field">
+						<mat-header-cell *matHeaderCellDef> Field </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+					</ng-container>
+
+					<!-- Symbol Column -->
+					<ng-container matColumnDef="examDate">
+						<mat-header-cell *matHeaderCellDef> Exam Date </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+					</ng-container>
+
+					<!--Actions-->
+					<ng-container matColumnDef="actions">
+						<mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+						<mat-cell  style="justify-content: flex-end" *matCellDef="let element">
+							<button mat-icon-button [matMenuTriggerFor]="actionsMenu">
+								<mat-icon>more_vert</mat-icon>
+							</button>
+							<mat-menu #actionsMenu="matMenu">
+								<button mat-menu-item>
+									<mat-icon>edit</mat-icon>
+									<span>Edit</span>
+								</button>
+								<button mat-menu-item>
+									<mat-icon>delete</mat-icon>
+									<span style="padding-right: 15px;">Delete</span>
+								</button>
+							</mat-menu>
+						</mat-cell>
+					</ng-container>
+
+					<mat-header-row *matHeaderRowDef="experienceColumns"></mat-header-row>
+					<mat-row *matRowDef="let row; columns: experienceColumns;"></mat-row>
+				</mat-table>
+			</div>
+			<div style="margin-top: 30px;"></div>
+		</form>
+	</div>
+</div>

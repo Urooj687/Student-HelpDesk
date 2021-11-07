@@ -1,0 +1,110 @@
+<div class="main-container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px"
+ fxLayoutAlign="center start" fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center">
+	<div fxFlexFill ngClass.sm="sm-width" ngClass.xs="xs-width" class="form-container mat-elevation-z2">
+		<h3 class="title">Education Details</h3>
+		<hr>
+		<form [formGroup]="form" (ngSubmit)="submit(form)">
+			<div>
+				<button style="float:right;margin-top:-60px;" class="custom-btn text-white btn-green" type="submit">Save
+					<mat-icon class="text-primary">save</mat-icon>
+				</button>
+
+			</div>
+			<div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+				<mat-form-field fxFlex.gt-md="33" fxFlex.lt-md="100">
+					<input [autocomplete]="'new-password'" formControlName="country" autocomplete='off' type="text" placeholder="Country"
+					 aria-label="country" matInput [matAutocomplete]="country">
+					<mat-autocomplete #country="matAutocomplete">
+						<mat-option *ngFor="let country of filteredCountries | async" [value]="country">{{country}}</mat-option>
+					</mat-autocomplete>
+				</mat-form-field>
+				<mat-form-field *ngIf="form.get('country').valid" fxFlex.gt-md="33" fxFlex.lt-md="100">
+					<input [autocomplete]="'new-password'" (focus)="onStateFocus()" formControlName="state" autocomplete='off' type="text"
+					 placeholder="State" aria-label="state" matInput [matAutocomplete]="stateAutoComplete">
+					<mat-autocomplete #stateAutoComplete="matAutocomplete">
+						<mat-option *ngFor="let state of filteredStates | async" [value]="state">{{state}}</mat-option>
+					</mat-autocomplete>
+				</mat-form-field>
+				<mat-form-field *ngIf="form.get('country').valid && form.get('state').valid" fxFlex.gt-md="33" fxFlex.lt-md="100">
+					<input (focus)="onCityFocus()" [autocomplete]="'city'" formControlName="city" autocomplete='off' type="text"
+					 placeholder="City" aria-label="city" matInput [matAutocomplete]="city">
+					<mat-autocomplete #city="matAutocomplete">
+						<mat-option *ngFor="let city of filteredCities | async" [value]="city">{{city}}</mat-option>
+					</mat-autocomplete>
+				</mat-form-field>
+
+			</div>
+			<div fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+
+				<mat-form-field fxFlex.lg="33" fxFlex.lt-md="100">
+					<mat-select (selectionChange)="onEducationTypeChanged()" formControlName="educationType" name="highschoolType"
+					 placeholder="High School Type">
+						<mat-option [value]="'primary'">Primary</mat-option>
+						<mat-option [value]="'secondary'">Secondary</mat-option>
+						<mat-option [value]="'tertiary'">Tertiary</mat-option>
+					</mat-select>
+				</mat-form-field>
+
+				<mat-form-field fxFlex.gt-md="33" fxFlex.lt-md="100">
+					<input [autocomplete]="'new-password'" formControlName="institution" autocomplete='off' type="text" placeholder="Institution"
+					 aria-label="Institution" matInput>
+				</mat-form-field>
+				<mat-form-field fxFlex.lg="33" fxFlex.lt-md="100">
+					<mat-select formControlName="field" name="majorField" placeholder="Major field of education">
+						<mat-option *ngFor="let field of majorFieldList" [value]="field.value">{{field.name}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+
+			<div fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+				<mat-form-field fxFlex.lg="33" fxFlex.lt-md="100">
+					<mat-select formControlName="status" name="status" placeholder="Status">
+						<mat-option [value]="true">Gratuated</mat-option>
+						<mat-option [value]="false">Continues</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<mat-form-field fxFlex.lg="33">
+					<input [autocomplete]="'new-password'" formControlName="start" matInput autocomplete='off' placeholder="Start Date"
+					 [matDatepicker]="startDate">
+					<mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+					<mat-datepicker #startDate></mat-datepicker>
+				</mat-form-field>
+				<mat-form-field fxFlex.lg="33" *ngIf="form.get('status').value == true">
+					<input [autocomplete]="'new-password'" formControlName="end" matInput autocomplete='off' placeholder="Graduation Date"
+					 [matDatepicker]="endDate">
+					<mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+					<mat-datepicker #endDate></mat-datepicker>
+				</mat-form-field>
+			</div>
+
+			<div formGroupName="grade" fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+				<mat-form-field fxFlex.lg="33" fxFlex.lt-md="100">
+					<mat-select formControlName="gradeType" name="gradeType" placeholder="Grade Type">
+						<mat-option [value]="'gpa'">GPA System</mat-option>
+						<mat-option [value]="'marks'">Marks System</mat-option>
+						<mat-option [value]="'fiveGrade'">A-E (5 Grade System)</mat-option>
+						<mat-option [value]="'sixGrade'">A-F (6 Grade System)</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<mat-form-field *ngIf="form.get('grade.gradeType').value=='gpa' || form.get('grade.gradeType').value=='marks'" fxFlex.gt-md="33" fxFlex.lt-md="100">
+					<input [autocomplete]="'new-password'" formControlName="obtained" autocomplete='off' type="number" placeholder="Your Marks/Grade"
+					 aria-label="total" matInput>
+				</mat-form-field>
+				<mat-form-field *ngIf="form.get('grade.gradeType').value=='fiveGrade' || form.get('grade.gradeType').value=='sixGrade'" fxFlex.gt-md="33" fxFlex.lt-md="100">
+					<mat-select formControlName="obtained" name="gradeType" placeholder="Your Marks/Grade">
+						<mat-option [value]="1">A</mat-option>
+						<mat-option [value]="2">B</mat-option>
+						<mat-option [value]="3">C</mat-option>
+						<mat-option [value]="4">D</mat-option>
+						<mat-option [value]="5">E</mat-option>
+						<mat-option *ngIf="form.get('grade.gradeType').value=='sixGrade'" [value]="6">F</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<mat-form-field fxFlex.gt-md="33" fxFlex.lt-md="100" *ngIf="form.get('grade.gradeType').value=='gpa' || form.get('grade.gradeType').value=='marks'" >
+					<input [autocomplete]="'new-password'" [type]="form.get('grade.gradeType').value=='marks'?'number':'text'" formControlName="total" autocomplete='off' type="number" placeholder="Total/Max"
+					 aria-label="got" matInput>
+				</mat-form-field>
+			</div>
+		</form>
+	</div>
+</div>

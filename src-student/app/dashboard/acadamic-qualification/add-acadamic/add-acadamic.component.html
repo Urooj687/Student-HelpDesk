@@ -1,0 +1,67 @@
+<div class="main-container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px"
+ fxLayoutAlign="center start" fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center">
+	<div fxFlexFill ngClass.sm="sm-width" ngClass.xs="xs-width" class="form-container mat-elevation-z2">
+		<h3 class="title">Academic Qualifications</h3>
+		<hr>
+		<form [formGroup]="form" (ngSubmit)="submit(form)">
+			<div>
+				<button style="float:right;margin-top:-60px;" class="custom-btn text-white btn-green" type="submit">Save
+					<mat-icon class="text-primary">save</mat-icon>
+				</button>
+			</div>
+			<div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+				<mat-form-field fxFlex.gt-md="50" fxFlex.lt-md="100">
+					<!-- <input formControlName="examName" autocomplete='off' type="text" placeholder="Exam Name" aria-label="examName"
+					 matInput [matAutocomplete]="examName">
+					<mat-autocomplete #examName="matAutocomplete">
+						<mat-option [value]="'Pakistan'">Pakistan</mat-option>
+						<mat-option [value]="'USA'">USA</mat-option>
+					</mat-autocomplete> -->
+					<mat-select formControlName="examName" placeholder="Exam Name">
+						<mat-option value="ACT">ACT(Math+Reading+Science)</mat-option>
+						<mat-option value="ALES">ALES</mat-option>
+						<mat-option value="GAT-A">GAT-A(Business and Engineering)</mat-option>
+						<mat-option value="GAT-B">GAT-B(Art, Humanities and Social Sciences)</mat-option>
+						<mat-option value="GAT-C">GAT-C(Agricultural, Veterinary, Biological &amp; Related Sciences)</mat-option>
+						<mat-option value="GAT-D">GAT-D(Religious Studies)</mat-option>
+						<mat-option value="GCEA-Level">GCEA-Level</mat-option>
+						<mat-option value="GMAT">GMAT</mat-option>
+						<mat-option value="GREQuantitative">GRE(Quantitative Reasoning)</mat-option>
+						<mat-option value="GREVerbal">GRE(Verbal Reasoning)</mat-option>
+						<mat-option value="HAT 1">HAT 1(Engineering &amp; IT)</mat-option>
+						<mat-option value="HAT 2">HAT 2(Management &amp; Business)</mat-option>
+						<mat-option value="HAT 3">HAT 3(Social Sciences &amp; Arts &amp; Humanities)</mat-option>
+						<mat-option value="HAT 4">HAT 4(Science &amp; Medicine)</mat-option>
+						<mat-option value="InternationalBaccalaureate (IB)">InternationalBaccalaureate (IB)</mat-option>
+						<mat-option value="International-LawSchool Admission Test (LSAT)">International-LawSchool Admission Test (LSAT)</mat-option>
+						<mat-option value="International-MedicalCollege Admission Test (MCAT)">International-MedicalCollege Admission Test (MCAT)</mat-option>
+						<mat-option value="LAW-GAT">LAW-GAT</mat-option>
+						<mat-option value="SAT (new)">SAT (new)</mat-option>
+						<mat-option value="SAT (old)">SAT (old)</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<mat-form-field fxFlex.gt-md="50" fxFlex.lt-md="100">
+					<input formControlName="country" autocomplete='off' type="text" placeholder="Country" aria-label="country"
+					 matInput [matAutocomplete]="country">
+					<mat-autocomplete #country="matAutocomplete">
+						<mat-option *ngFor="let country of filteredCountries | async" [value]="country">{{country}}</mat-option>
+					</mat-autocomplete>
+				</mat-form-field>
+			</div>
+			<div fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+				<mat-form-field fxFlex.lg="50">
+					<input formControlName="date" matInput autocomplete='off' placeholder="Exam Date" [matDatepicker]="startDate">
+					<mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+					<mat-datepicker #startDate></mat-datepicker>
+				</mat-form-field>
+				<mat-form-field fxFlex.lg="50" fxFlex.lt-md="100">
+					<input formControlName="grade" autocomplete='off' type="number" placeholder="Grade" aria-label="country" matInput>
+				</mat-form-field>
+			</div>
+			<div>
+				<button type="button" mat-raised-button color="primary" (click)="cvInput.click()">Select Document</button>
+				<input hidden type="file" #cvInput />
+			</div>
+		</form>
+	</div>
+</div>

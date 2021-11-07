@@ -1,0 +1,101 @@
+<div class="main-container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px" fxLayoutAlign="center start"
+ fxLayoutAlign.sm="center center" fxLayoutAlign.xs="center center">
+	<div fxFlex.lg="25" fxFlex.md="50" ngClass.sm="sm-width" ngClass.xs="xs-width" class="picture-container mat-elevation-z2">
+		<div class="image-gradient">
+			<img src="./assets/logo.png" alt="">
+		</div>
+		<div class="name">{{getName()}}</div>
+		<div class="email">14bscsmammar@seecs.edu.pk</div>
+	</div>
+	<div fxFlex.lg="75" fxFlex.md="50" ngClass.sm="sm-width" ngClass.xs="xs-width" class="form-container mat-elevation-z2">
+		<h3 class="title">Personal Information</h3>
+		<hr>
+		<form [formGroup]="personalInfoForm" (ngSubmit)="update(personalInfoForm)">
+			<div>
+				<button *ngIf="formEnabled" style="float:right;margin-top:-60px;" class="custom-btn text-white btn-green" type="submit">Save
+					<mat-icon class="text-primary">save</mat-icon>
+				</button>
+				<button (click)="enableForm()" *ngIf="!formEnabled" style="float:right;margin-top:-60px;" class="custom-btn bg-primary text-white btn-blue"
+				 type="submit">Edit
+					<mat-icon class="text-primary">edit</mat-icon>
+				</button>
+			</div>
+			<div fxLayout.md="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10px">
+				<mat-form-field fxFlex.lg="33">
+					<input autocomplete='off' matInput formControlName="FirstName" placeholder="First Name">
+				</mat-form-field>
+				<mat-form-field fxFlex.lg="33">
+					<input autocomplete='off' matInput formControlName="MiddleName" placeholder="Middle Name">
+				</mat-form-field>
+				<mat-form-field fxFlex.lg="33">
+					<input autocomplete='off' matInput formControlName="LastName" placeholder="Last Name">
+				</mat-form-field>
+			</div>
+			<div fxLayout.md="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10px">
+				<mat-form-field fxFlex.lg="33">
+					<mat-select formControlName="Gender" placeholder="Gender">
+						<mat-option [value]="'male'">Male</mat-option>
+						<mat-option [value]="'female'">Female</mat-option>
+						<mat-option [value]="'other'">Other</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<mat-form-field fxFlex.lg="33">
+					<mat-select formControlName="MaritalStatus" placeholder="Marital Status">
+						<mat-option [value]="'single'">Single</mat-option>
+						<mat-option [value]="'married'">Married</mat-option>
+						<mat-option [value]="'divorced'">Divorced</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<mat-form-field fxFlex.lg="33">
+					<input matInput autocomplete='off' formControlName="DateOfBirth" placeholder="Date of Birth" [matDatepicker]="dob">
+					<mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+					<mat-datepicker #dob></mat-datepicker>
+				</mat-form-field>
+			</div>
+			<div fxLayout.md="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10px">
+				<mat-form-field fxFlex.lg="33">
+					<input autocomplete='off' type="text" formControlName="BirthCountry" placeholder="Country of Birth" aria-label="Number"
+					 matInput [matAutocomplete]="autoBirthCountry">
+					<mat-autocomplete #autoBirthCountry="matAutocomplete">
+						<mat-option *ngFor="let country of birthCountries | async" [value]="country">{{country}}</mat-option>
+					</mat-autocomplete>
+				</mat-form-field>
+				<mat-form-field fxFlex.lg="33" *ngIf="personalInfoForm.get('BirthCountry').valid || personalInfoForm.disabled">
+					<input autocomplete='off' type="text" formControlName="BirthState" placeholder="State/Province of Birth"
+					 aria-label="Number" matInput [matAutocomplete]="autoBirthState" (focus)="onStateFocus()">
+					<mat-autocomplete #autoBirthState="matAutocomplete">
+						<mat-option *ngFor="let state of birthStates | async" [value]="state">{{state}}</mat-option>
+					</mat-autocomplete>
+				</mat-form-field>
+				<!-- <span *ngFor="let country of countries">{{country}}</span> -->
+				<mat-form-field fxFlex.lg="33" *ngIf="(personalInfoForm.get('BirthState').valid && personalInfoForm.get('BirthCountry').valid) || personalInfoForm.disabled">
+					<input autocomplete='off' type="text" formControlName="BirthCity" placeholder="City of Birth" aria-label="Number"
+					 matInput [matAutocomplete]="autoBirthCity" (focus)="onCityFocus()">
+					<mat-autocomplete #autoBirthCity="matAutocomplete">
+						<mat-option *ngFor="let city of birthCities | async" [value]="city">{{city}}</mat-option>
+					</mat-autocomplete>
+				</mat-form-field>
+			</div>
+			<div fxLayout.md="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10px">
+				<mat-form-field fxFlex.lg="33">
+					<input autocomplete='off' type="text" formControlName="Nationality" placeholder="Nationality/Citizenship"
+					 aria-label="Number" matInput [matAutocomplete]="autoNationality">
+					<mat-autocomplete #autoNationality="matAutocomplete">
+						<mat-option *ngFor="let country of nationalities | async" [value]="country">{{country}}</mat-option>
+					</mat-autocomplete>
+				</mat-form-field>
+				<mat-form-field fxFlex.lg="33">
+					<input autocomplete='off' autocomplete='off' matInput formControlName="IdCard" placeholder="ID Card Number">
+				</mat-form-field>
+
+				<mat-form-field fxFlex.lg="33">
+					<input autocomplete='off' type="text" formControlName="OtherCitizenship" placeholder="Other Citizenship (If Any)"
+					 aria-label="Number" matInput [matAutocomplete]="autoOtherCitizenship">
+					<mat-autocomplete #autoOtherCitizenship="matAutocomplete">
+						<mat-option *ngFor="let country of otherCitizenships | async" [value]="country">{{country}}</mat-option>
+					</mat-autocomplete>
+				</mat-form-field>
+			</div>
+		</form>
+	</div>
+</div>
