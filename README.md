@@ -1,2 +1,2 @@
-# student-portal-master
+# student-portal
  
